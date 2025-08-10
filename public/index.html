@@ -1,7 +1,7 @@
 <!--
   NOTE: This .html file (and public folder) is optional and can be safely deleted.
   It serves only as a demo/test page.
-  
+
   The chatbot can be embedded directly on any allowed domain using the embed script that
   is generated when starting the server.
 -->
@@ -12,6 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <title>Flowise Chatbot Widget</title>
 </head>
 
@@ -19,7 +20,7 @@
     <div id="root"></div>
     <script type="module">
         import Chatbot from './web.js'
-        
+
         // Example initialization:
         // If your .env contains:
         // agent1=xyz789-uvw456,https://example.com
@@ -29,7 +30,65 @@
         // Then use the environment variable name as chatflowid:
         Chatbot.init({
             chatflowid: 'agent1',    // or 'support', 'salesbot', etc.
-            apiHost: window.location.origin
+            apiHost: window.location.origin,
+            theme: {
+                button: {
+                    backgroundColor: '#2563EB',
+                    iconColor: '#FFFFFF',
+                    size: 56,
+                    right: 24,
+                    bottom: 24,
+                    dragAndDrop: true,
+                },
+                tooltip: {
+                    showTooltip: true,
+                    tooltipMessage: 'كيف أقدر أساعدك؟'
+                },
+                chatWindow: {
+                    showTitle: true,
+                    title: 'مساعد الشركة',
+                    titleAvatarSrc: 'https://your-site.com/logo.svg',
+                    titleBackgroundColor: '#0F172A',
+                    titleTextColor: '#FFFFFF',
+                    welcomeMessage: 'مرحباً! كيف أقدر أساعدك؟',
+                    errorMessage: 'حدث خطأ غير متوقع، حاول لاحقاً',
+                    backgroundColor: '#F8FAFC',
+                    height: 680,
+                    width: 420,
+                    fontSize: 15,
+                    renderHTML: true,
+                    botMessage: {
+                        backgroundColor: '#F1F5F9',
+                        textColor: '#0F172A',
+                        showAvatar: true
+                    },
+                    userMessage: {
+                        backgroundColor: '#2563EB',
+                        textColor: '#FFFFFF',
+                        showAvatar: true
+                    },
+                    textInput: {
+                        placeholder: 'اكتب سؤالك…',
+                        backgroundColor: '#FFFFFF',
+                        textColor: '#0F172A',
+                        sendButtonColor: '#2563EB',
+                        autoFocus: true
+                    },
+                    footer: {
+                        text: 'مرحباً بك',
+                        company: 'اسم الشركة',
+                        companyLink: '#'
+                    }
+                },
+                customCSS: `
+                      /* استخدم الخط فقط بدون تغيير اتجاه التخطيط */
+                      :host { font-family: 'Cairo', sans-serif !important; }
+                      * { font-family: inherit !important; }
+                      /* حواف ناعمة للفقاعات */
+                      .flowise-message-bot { border-radius: 12px !important; }
+                      .flowise-message-user { border-radius: 12px !important; }
+                    `
+            }
         })
     </script>
 </body>
